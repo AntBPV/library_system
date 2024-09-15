@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class='row'>
+        {% include "book/list_inline.html" with book_post=object detail=True %}
+
+        {% if request.user.is_authenticated %}
+            {% if request.user.is_staff %}
+                <div class='col-10'>
+                    <a class='btn btn-primary'href='{{object.get_edit_url}}'>Edit</a>
+                    <a class='btn btn-danger' href='{{object.get_delete_url}}'>Delete</a>
+                    
+                    {% if object.doc %}
+                        <a class='btn btn-info' href="{{ object.doc.url }}" download>Download</a>
+                    {% endif %}
+                    
+                    {% if object.get_status %}
+                        <a class'btn btn-outline-primary' href="{{object.change_status}}">Añadir a favoritos</a>
+                    {% else%}
+                        <a class'btn btn-outline-warning' href="{{object.remove_status}}">Quitar de favoritos</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        {% endif %}
+    </div>
+{% endblock content %}

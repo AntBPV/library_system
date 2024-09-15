@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class='containter-fluid'>
+        <h2>{{title}}</h2>
+
+        <form method='POST' action='' enctype='multipart/form-data'> {% csrf_token %}
+            <div class='form-group'>
+                {{form.title}}
+            </div>
+            <div class='form-group'>
+                {{form.author}}
+            </div>
+            <div class='form-group'>
+                {{form.content}}
+            </div>
+            <div class='form-group'>
+                <div class="input-group mb-3">
+                    <b>Elija una portada: </b>
+                        {{form.image}}
+                      
+                  </div>
+            </div>
+            <div class='form-group'>
+                <div class="input-group mb-3">
+                    <b>Elija un documento: </b>
+                        {{form.doc}}
+                    
+                  </div>
+            </div>
+            <div class='form-group'>
+                <button class='btn btn-outline-success' type='submit'>Send</button>
+            </div>
+        </form>
+{% endblock content %}

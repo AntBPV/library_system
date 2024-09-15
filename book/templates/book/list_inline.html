@@ -1,0 +1,22 @@
+<div class='col-12 col-md-6 mb-3 mx-auto'>
+    <div class='card'>
+        <div class='card-body'>
+            {% if book_post.image %}
+            <a href="{{book_post.get_absolute_url}}">
+                <img src="{{book_post.image.url}}" class="card-img-top"/>
+            </a>
+            {% endif %}
+            <h5 class='card-title'>{{book_post.title}}</h5>
+            <p class='card-text'>
+                {% if truncate %}
+                    {{book_post.content |linebreaks | truncatewords:25}}
+                {% else %}
+                    {{book_post.content | linebreaks}}
+                {% endif %}
+            </p>
+            {% if not detail %}
+                <a class='btn btn-outline-primary' href="{{book_post.get_absolute_url}}">View</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
